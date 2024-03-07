@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const companySchema = new mongoose.Schema({
+const recruiterRegSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -39,6 +39,6 @@ const companySchema = new mongoose.Schema({
   ],
 });
 
-const companies = mongoose.model("Company", companySchema);
+const companies = mongoose.model("Company", recruiterRegSchema);
 
 export default companies;
