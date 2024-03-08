@@ -3,7 +3,10 @@ import { validateReqBody } from "../middleware/validation.middleware.js";
 import Recruiter from "../models/recruiterModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { recruiterRegSchema } from "../validation/recruiter.validation.js";
+import {
+  loginValidationSchema,
+  recruiterRegSchema,
+} from "../validation/recruiter.validation.js";
 
 const router = express.Router();
 
@@ -65,7 +68,45 @@ router.post("/recruiter/login", async (req, res) => {
 });
 
 // recruiter login
-router.post("/recruiter/login", async (req, res) => {
-  const loginCredentials = req.body;
-});
+router.post(
+  "/recruiter/login",
+  validateReqBody(loginValidationSchema),
+  async (req, res) => {
+    const loginCredentials = req.body;
+
+    // Check if recruiter with provided email exists
+    const recruiter = await Recruiter.findOne({
+      email: loginCredentials.email,
+    });
+
+    // If no recruiter found, throw an error
+    if (!recruiter) {
+      return res.status(404).send({ message: "Invalid credentials." });
+    }
+
+    // Compare password
+    const isPasswordMatch = await bcrypt.compare(
+      loginCredentials.password,
+      recruiter.password
+    );
+
+    // If password doesn't match, throw an error
+    if (!isPasswordMatch) {
+      return res.status(404).send({ message: "Invalid credentials." });
+    }
+
+    // Generate token and send response
+    const token = jwt.sign({ email: recruiter.email }, "JWT_SECRET_KEY", {
+      expiresIn: "24h",
+    });
+
+    // Hide hashedPassword
+    recruiter.password = undefined;
+
+    return res
+      .status(200)
+      .send({ message: "success", recruiter: recruiter, token: token });
+  }
+);
+
 export default router;
