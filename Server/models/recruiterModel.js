@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 
 const recruiterRegSchema = new mongoose.Schema({
-  name: {
+  recruiterName: {
     type: String,
     required: true,
   },
-  email: {
+  companyEmail: {
     type: String,
     required: true,
     unique: true,
@@ -16,20 +16,16 @@ const recruiterRegSchema = new mongoose.Schema({
     minlength: 6,
     select: true,
   },
-  contact: {
+  companyName: {
+    type: String,
+    required: true,
+  },
+  companyContact: {
     type: String,
   },
   location: {
     type: String,
-  },
-  profileUrl: {
-    type: String,
-  },
-  jobTitle: {
-    type: String,
-  },
-  about: {
-    type: String,
+    required: true,
   },
   jobPosting: [
     {
@@ -39,6 +35,6 @@ const recruiterRegSchema = new mongoose.Schema({
   ],
 });
 
-const companies = mongoose.model("Company", recruiterRegSchema);
+const recruiter = mongoose.model("Company", recruiterRegSchema);
 
-export default companies;
+export default recruiter;
