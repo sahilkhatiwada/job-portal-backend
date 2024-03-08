@@ -64,4 +64,8 @@ router.post("/recruiter/login", async (req, res) => {
   res.status(200).send({ message: "Login successful.", token, recruiter });
 });
 
+// recruiter login
+router.post("/recruiter/login", async (req, res) => {
+  const loginCredentials = req.body;
+});
 export default router;
