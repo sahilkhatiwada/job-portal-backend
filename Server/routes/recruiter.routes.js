@@ -2,6 +2,7 @@ import express from "express";
 import { validateReqBody } from "../middleware/validation.middleware.js";
 import Recruiter from "../models/recruiterModel.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 import { recruiterRegSchema } from "../validation/recruiter.validation.js";
 
 const router = express.Router();
@@ -36,41 +37,31 @@ router.post(
 // login router
 router.post("/recruiter/login", async (req, res) => {
   const loginCredentials = req.body;
+
   // find the user by email
-  const user = await Recruiter.findOne({
-    CompanyEmail: loginCredentials.email,
-  });
-  if (!user) {
-    return res.status(401).send({ message: "User not found." });
+  const recruiter = await Recruiter.findOne({
+    CompanyEmail: loginCredentials.CompanyEmail,
+  }).select("-__v -Password");
+  // If no such user exist then send error message
+  if (!recruiter) {
+    return res.status(404).send({ message: "User not found." });
   }
-  // compare password with the one in db
+  // compare password with the hashed password in database
   const isMatch = await bcrypt.compare(
     loginCredentials.password,
-    user.password
+    recruiter.password
   );
+  //if password doesn't match send error
   if (!isMatch) {
     return res.status(401).send({ message: "Invalid password." });
   }
-  // send back a token for authentication
-  const token = jwt.sign(
-    { CompanyEmail: user.CompanyEmail },
-    process.env.JWT_SECRET_KEY,
-    { expiresIn: "7d" }
-  );
-  res.header("auth-token", token).send(
-    jwt.decode(token, { complete: true }, (err, decoded) => {
-      if (err) {
-        return res.status(401).send({ message: "Invalid token." });
-      } else {
-        return res.json({
-          id: user._id,
-          name: `${user.FirstName} ${user.LastName}`,
-          email: user.companyEmail,
-          token: token,
-          expiry: decoded.exp,
-        });
-      }
-    })
-  );
+  // generate token and send response
+  let token = jwt.sign({ email: recruiter.companyEmail }, "JWT_SECRET_KEY", {
+    expiresIn: "1h",
+  });
+  // remove password from user object before sending it to client side
+  recruiter.password = undefined;
+  res.status(200).send({ message: "Login successful.", token, recruiter });
 });
+
 export default router;
