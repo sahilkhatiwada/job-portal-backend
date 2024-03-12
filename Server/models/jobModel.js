@@ -1,26 +1,56 @@
 import mongoose from "mongoose";
+import {
+  EducationLevel,
+  Experiences,
+  JobTypeOption,
+  Salary,
+  Skills,
+  country,
+  jobTitle,
+} from "../constants/general.constant.js";
 
 const jobSchema = new mongoose.Schema(
   {
-    company: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "companies",
+    companyName: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    companyLocation: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    companyPhoneNumber: {
+      type: String,
+      required: true,
+      trim: true,
     },
     jobTitle: {
       type: String,
       required: true,
+      enum: jobTitle,
+    },
+    education: {
+      type: String,
+      required: true,
+      trim: true,
+      enum: EducationLevel,
+    },
+    country: {
+      type: String,
+      capitalize: true,
+      enum: country,
     },
     jobType: {
       type: String,
       required: true,
-    },
-    location: {
-      type: String,
-      required: true,
+      enum: JobTypeOption,
     },
     salary: {
-      type: Number,
+      type: String,
       required: true,
+      enum: Salary,
     },
     vacancies: {
       type: Number,
@@ -28,40 +58,28 @@ const jobSchema = new mongoose.Schema(
     },
     experiences: {
       type: Number,
-      default: 0,
+      required: true,
+      enum: Experiences,
     },
-    detail: [
-      {
-        desc: {
-          type: String,
-          required: true,
-        },
-      },
-    ],
-    skills: [
-      {
-        type: String,
-        required: true,
-      },
-    ],
-    application: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "users",
-      },
-    ],
-    companyId: {
+    skills: {
+      type: String,
+      required: true,
+      enum: Skills,
+    },
+    jobDescription: {
       type: String,
       required: true,
     },
-    status: {
-      type: String,
-      default: "active",
+    OwnerId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "users",
+      required: true,
     },
   },
   {
     timestamps: true,
   }
 );
-const job = mongoose.model("Job", jobSchema);
-export default job;
+const Job = mongoose.model("Job", jobSchema);
+
+export default Job;

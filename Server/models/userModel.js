@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { GenderOption, UserRoles } from "../constants/general.constant.js";
 
 const userSchema = new mongoose.Schema(
   {
@@ -22,24 +23,30 @@ const userSchema = new mongoose.Schema(
       required: true,
       minlength: 6,
     },
-    accountType: {
+    role: {
       type: String,
-      default: "seeker",
+      required: true,
+      enum: UserRoles,
     },
     contact: {
       type: String,
+      required: true,
     },
     location: {
       type: String,
+      required: true,
     },
     profileUrl: {
       type: String,
     },
-    jobTitle: {
-      type: String,
-    },
     about: {
       type: String,
+      required: true,
+    },
+    gender: {
+      type: String,
+      required: true,
+      enum: GenderOption,
     },
   },
   {

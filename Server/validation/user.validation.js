@@ -1,4 +1,5 @@
 import * as Yup from "Yup";
+import { GenderOption, UserRoles } from "../constants/general.constant.js";
 
 export const userRegSchema = Yup.object({
   firstName: Yup.string().required("First name is required"),
@@ -7,11 +8,15 @@ export const userRegSchema = Yup.object({
   password: Yup.string()
     .min(6)
     .required("Password is must be at least 6 characters."),
-  accountType: Yup.string().default("seeker"),
+  role: Yup.string()
+    .oneOf(UserRoles)
+    .required("Account type is required")
+    .trim(),
   contact: Yup.string().required("Contact is required"),
   location: Yup.string().required("Location is required"),
-  profileUrl: Yup.string(),
-  jobTitle: Yup.string().required("Job title is required"),
+
+  gender: Yup.string().oneOf(GenderOption).required("Gender is required"),
+
   about: Yup.string().required("About is required"),
 });
 export const loginUserSchema = Yup.object({
