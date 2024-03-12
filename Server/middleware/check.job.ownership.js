@@ -12,7 +12,7 @@ export const checkJobOwnership = async (req, res, next) => {
 
   // compare the owner of the job with the owner of the user making the request
 
-  const isOwnerOfJob = req.loggedInUserId.equals(jobDetails.owner);
+  const isOwnerOfJob = req.loggedInUserId === jobDetails.owner;
   if (!isOwnerOfJob) {
     return res
       .status(403)

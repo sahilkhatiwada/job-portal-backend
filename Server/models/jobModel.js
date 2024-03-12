@@ -62,7 +62,7 @@ const jobSchema = new mongoose.Schema(
       default: 1,
     },
     experiences: {
-      type: Number,
+      type: String,
       required: true,
       enum: Experiences,
     },
