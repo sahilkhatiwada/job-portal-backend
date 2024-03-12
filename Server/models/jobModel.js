@@ -50,6 +50,10 @@ const jobSchema = new mongoose.Schema(
         ref: "users",
       },
     ],
+    companyId: {
+      type: String,
+      required: true,
+    },
     status: {
       type: String,
       default: "active",

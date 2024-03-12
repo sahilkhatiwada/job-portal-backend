@@ -7,6 +7,7 @@ export const JobListValidationSchema = Yup.object({
   jobType: Yup.string().required("Job type is required."),
   salary: Yup.string().required("Salary is required."),
 });
+
 export const getJobListValidationSchema = Yup.object({
   page: Yup.number("Page must be a number.")
     .min(1, "Page must be at least 1.")

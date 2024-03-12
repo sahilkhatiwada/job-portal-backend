@@ -56,7 +56,7 @@ router.post(
       return res.status(401).send({ message: "Invalid password." });
     }
     // generate token and send response
-    const token = jwt.sign({ email: user.email }, "JWT_SECRET ", {
+    const token = jwt.sign({ email: user.email }, "JWT_SECRET_KEY ", {
       expiresIn: "1h",
     });
 

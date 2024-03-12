@@ -35,6 +35,6 @@ const recruiterRegSchema = new mongoose.Schema({
   ],
 });
 
-const recruiter = mongoose.model("Company", recruiterRegSchema);
+const Recruiter = mongoose.model("Company", recruiterRegSchema);
 
-export default recruiter;
+export default Recruiter;

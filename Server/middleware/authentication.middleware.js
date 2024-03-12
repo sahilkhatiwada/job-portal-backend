@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 
 import { User } from "../models/userModel.js";
 
-export const validateAccessToken = async (req, res, next) => {
+const validateAccessToken = async (req, res, next) => {
   // extract token from req.headers
 
   const authorization = req.headers.authorization;
@@ -25,7 +25,7 @@ export const validateAccessToken = async (req, res, next) => {
   const user = await User.findOne({ email: payload.email });
   // if user does not exist,throw error
 
-  if (!user) {
+  if (user) {
     return res.status(401).send({ message: "Unauthorized." });
   }
 
@@ -33,3 +33,5 @@ export const validateAccessToken = async (req, res, next) => {
 
   next();
 };
+
+export default validateAccessToken;

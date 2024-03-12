@@ -38,34 +38,34 @@ router.post(
 );
 
 // login router
-router.post("/recruiter/login", async (req, res) => {
-  const loginCredentials = req.body;
+// router.post("/recruiter/login", async (req, res) => {
+//   const loginCredentials = req.body;
 
-  // find the user by email
-  const recruiter = await Recruiter.findOne({
-    CompanyEmail: loginCredentials.CompanyEmail,
-  }).select("-__v -Password");
-  // If no such user exist then send error message
-  if (!recruiter) {
-    return res.status(404).send({ message: "User not found." });
-  }
-  // compare password with the hashed password in database
-  const isMatch = await bcrypt.compare(
-    loginCredentials.password,
-    recruiter.password
-  );
-  //if password doesn't match send error
-  if (!isMatch) {
-    return res.status(401).send({ message: "Invalid password." });
-  }
-  // generate token and send response
-  let token = jwt.sign({ email: recruiter.companyEmail }, "JWT_SECRET_KEY", {
-    expiresIn: "1h",
-  });
-  // remove password from user object before sending it to client side
-  recruiter.password = undefined;
-  res.status(200).send({ message: "Login successful.", token, recruiter });
-});
+//   // find the user by email
+//   const recruiter = await Recruiter.findOne({
+//     CompanyEmail: loginCredentials.CompanyEmail,
+//   }).select("-__v -Password");
+//   // If no such user exist then send error message
+//   if (!recruiter) {
+//     return res.status(404).send({ message: "User not found." });
+//   }
+//   // compare password with the hashed password in database
+//   const isMatch = await bcrypt.compare(
+//     loginCredentials.password,
+//     recruiter.password
+//   );
+//   //if password doesn't match send error
+//   if (!isMatch) {
+//     return res.status(401).send({ message: "Invalid password." });
+//   }
+//   // generate token and send response
+//   let token = jwt.sign({ email: recruiter.companyEmail }, "JWT_SECRET_KEY", {
+//     expiresIn: "1h",
+//   });
+//   // remove password from user object before sending it to client side
+//   recruiter.password = undefined;
+//   res.status(200).send({ message: "Login successful.", token, recruiter });
+// });
 
 // recruiter login
 router.post(
