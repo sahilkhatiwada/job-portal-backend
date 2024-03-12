@@ -11,6 +11,11 @@ import {
 
 const jobSchema = new mongoose.Schema(
   {
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "User",
+    },
     companyName: {
       type: String,
       required: true,
@@ -68,11 +73,6 @@ const jobSchema = new mongoose.Schema(
     },
     jobDescription: {
       type: String,
-      required: true,
-    },
-    OwnerId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "users",
       required: true,
     },
   },

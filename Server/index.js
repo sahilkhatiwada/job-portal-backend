@@ -3,7 +3,9 @@ import express from "express";
 import connectDB from "./dbConfig/connect.db.js";
 import jobRoutes from "./routes/job.routes.js";
 import userRoutes from "./routes/user.routes.js";
+import dotenv from "dotenv";
 
+dotenv.config();
 const app = express();
 // to make app understand json
 app.use(express.json());

@@ -106,7 +106,7 @@ export const jobTitle = [
   "News Writer",
 ];
 
-export const UserRoles = ["Recruiter", "Seeker"];
+export const UserRoles = ["recruiter", "seeker"];
 
 export const Experiences = [
   "Fresher",
@@ -125,7 +125,7 @@ export const EducationLevel = [
   "Bachelor Degree",
   "Master Degree",
   "PhD",
-  "Other",
+  "Others",
 ];
 
 export const Salary = [
