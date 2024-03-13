@@ -1,6 +1,6 @@
 import BaseLayout from "../layouts/BaseLayout";
-import Register from "../pages/Register";
 import Login from "../pages/Login";
+import Register from "../pages/Register";
 
 const baseRoutes = [
   {

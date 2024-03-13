@@ -34,6 +34,7 @@ export const JobValidationSchema = Yup.object({
     .required("Description is required")
     .trim()
     .max(1000, "Description must be at max 1000 characters."),
+  jobLocation: Yup.string().required("Job Location is required"),
 });
 
 export const paginationSchema = Yup.object({

@@ -109,6 +109,8 @@ export const jobTitle = [
   "Lecturer",
 ];
 
+export const joblocation = ["Remote", "Hybrid", "Onsite"];
+
 export const UserRoles = ["recruiter", "seeker"];
 
 export const Experiences = [

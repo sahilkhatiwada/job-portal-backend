@@ -6,6 +6,7 @@ import {
   Salary,
   Skills,
   country,
+  jobLocation,
   jobTitle,
 } from "../constants/general.constant.js";
 
@@ -74,6 +75,11 @@ const jobSchema = new mongoose.Schema(
     jobDescription: {
       type: String,
       required: true,
+    },
+    jobLocation: {
+      type: String,
+      required: true,
+      enum: jobLocation,
     },
   },
   {

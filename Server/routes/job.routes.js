@@ -142,6 +142,7 @@ router.post(
           salary: 1,
           skills: 1,
           jobDescription: 1,
+          jobLocation: 1,
         },
       },
     ]);
@@ -197,7 +198,8 @@ router.post("/job/recruiter/list", isRecruiter, async (req, res) => {
         experience: 1,
         salary: 1,
         skills: 1,
-        description: 1,
+        jobDescription: 1,
+        jobLocation: 1,
       },
     },
   ]);
