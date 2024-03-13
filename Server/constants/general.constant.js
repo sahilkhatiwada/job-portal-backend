@@ -104,6 +104,9 @@ export const jobTitle = [
   "Tax Accountant",
   "Chartered Tax Accountant",
   "News Writer",
+  "Journalist",
+  "Tutor",
+  "Lecturer",
 ];
 
 export const UserRoles = ["recruiter", "seeker"];
@@ -125,6 +128,8 @@ export const EducationLevel = [
   "Bachelor Degree",
   "Master Degree",
   "PhD",
+  "Post-graduate Degree",
+  "Doctorate Degree",
   "Others",
 ];
 
