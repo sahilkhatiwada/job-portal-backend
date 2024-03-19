@@ -1,4 +1,5 @@
 import BaseLayout from "../layouts/BaseLayout";
+import ForgotPasswordForm from "../pages/ForgetPassword";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 
@@ -12,8 +13,12 @@ const baseRoutes = [
         element: <Register />,
       },
       {
-        path: "login",
+        path: "/",
         element: <Login />,
+      },
+      {
+        path: "forget-password",
+        element: <ForgotPasswordForm />,
       },
     ],
   },

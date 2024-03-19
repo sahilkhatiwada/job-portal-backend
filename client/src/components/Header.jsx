@@ -15,7 +15,7 @@ import {
   PlayCircleIcon,
 } from "@heroicons/react/20/solid";
 
-const products = [
+const jobs = [
   {
     name: "Information Technology",
     description: "Get a better understanding of your traffic",
@@ -81,14 +81,14 @@ const Header = () => {
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
             onClick={() => setMobileMenuOpen(true)}
           >
-            <span className="sr-only">Open main menu</span>
+            <span className="sr-only">Jobs Main</span>
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
           <Popover className="relative">
             <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-              Product
+              Jobs
               <ChevronDownIcon
                 className="h-5 w-5 flex-none text-gray-400"
                 aria-hidden="true"
@@ -106,7 +106,7 @@ const Header = () => {
             >
               <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
                 <div className="p-4">
-                  {products.map((item) => (
+                  {jobs.map((item) => (
                     <div
                       key={item.name}
                       className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
@@ -208,7 +208,7 @@ const Header = () => {
                         />
                       </Disclosure.Button>
                       <Disclosure.Panel className="mt-2 space-y-2">
-                        {[...products, ...callsToAction].map((item) => (
+                        {[...jobs, ...callsToAction].map((item) => (
                           <Disclosure.Button
                             key={item.name}
                             as="a"
