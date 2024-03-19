@@ -27,7 +27,7 @@ router.post("/user/forget", async (req, res) => {
     await user.save();
 
     // send the email with the reset link
-    const resetLink = `http://localhost:3000/reset-password/${resetToken}`;
+    const resetLink = `http://localhost:8000/reset-password/${resetToken}`;
     await sendResetEmail(email, resetLink);
 
     // return success response
