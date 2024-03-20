@@ -1,6 +1,13 @@
 export const GenderOption = ["Male", "Female", "Other"];
 
-export const JobTypeOption = ["Full Time", "Part Time", "Internship"];
+export const JobTypeOption = [
+  "Full Time",
+  "Part Time",
+  "Intern",
+  "Freelance",
+  "Remote",
+  "Contract",
+];
 
 export const JobStatus = ["Open", "Closed", "Pending"];
 
