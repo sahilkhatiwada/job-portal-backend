@@ -1,5 +1,6 @@
 import MainLayout from "../layout/MainLayout";
 import About from "../pages/About";
+import Contact from "../pages/Contact";
 import Features from "../pages/Features";
 import Home from "../pages/Home";
 import Job from "../pages/Job";
@@ -24,6 +25,10 @@ export const MainRoutes = [
       {
         path: "feature",
         element: <Features />,
+      },
+      {
+        path: "Contact-Us",
+        element: <Contact />,
       },
     ],
   },
