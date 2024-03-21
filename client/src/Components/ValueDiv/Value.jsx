@@ -50,7 +50,7 @@ const Value = () => {
             </span>
           </div>
           <p className="text-[13px] text-textColor opacity-[.7] py-[1rem] font-semibold">
-            We deliver Updated Informations for you
+            We deliver Updated Information for you
           </p>
         </div>
       </div>

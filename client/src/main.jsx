@@ -3,11 +3,11 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import "./index.css";
-import { mainRoutes } from "./routes/MainRoutes";
+import { MainRoutes } from "./routes/MainRoutes";
 import { guestRoutes } from "./routes/guestRoutes";
 import { QueryClient, QueryClientProvider } from "react-query";
 
-const router = createBrowserRouter([...guestRoutes, ...mainRoutes]);
+const router = createBrowserRouter([...guestRoutes, ...MainRoutes]);
 // Create a client
 const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById("root")).render(
