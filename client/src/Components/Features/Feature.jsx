@@ -54,7 +54,7 @@ const Feature = () => {
                   </h3>
                   <p className="text-xs font-normal text-gray-300 w-full mb-8 xl:w-64">
                     Get quoted and covered in under 10 minutes online. no
-                    paperwork or waiting any more{" "}
+                    paperwork or waiting any more.
                   </p>
                   <button className="py-2 px-5 border border-solid border-gray-300 rounded-full gap-2 text-xs text-white font-semibold flex items-center justify-between transition-all duration-500 hover:bg-white/5">
                     View More
