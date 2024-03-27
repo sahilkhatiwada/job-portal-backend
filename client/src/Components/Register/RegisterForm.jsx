@@ -1,6 +1,26 @@
 import React from "react";
+import { useMutation } from "react-query";
+import { useDispatch } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
+import { $axios } from "../../utils/axios";
 
 const RegisterForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { isLoading, mutate: userRegister } = useMutation({
+    mutationKey: ["user-register"],
+    mutationFn: async (value) => {
+      return await $axios.post("/user/register", value);
+    },
+    onSuccess: () => {
+      navigate("/login");
+      dispatch("User is registered successfully");
+    },
+    onError: (err) => {
+      dispatch(err.response.data.message);
+    },
+  });
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -176,13 +196,12 @@ const RegisterForm = () => {
                 Create an account
               </button>
               <p className="text-sm font-light text-center text-gray-500 dark:text-gray-400">
-                Already have an account?{" "}
-                <a
-                  href="#"
-                  className="font-medium text-indigo-600 hover:underline dark:text-primary-500"
-                >
-                  Login here
-                </a>
+                Already have an account?
+                <NavLink to="/login">
+                  <a className="font-medium text-indigo-600 hover:underline dark:text-primary-500">
+                    Login here
+                  </a>
+                </NavLink>
               </p>
             </form>
           </div>
