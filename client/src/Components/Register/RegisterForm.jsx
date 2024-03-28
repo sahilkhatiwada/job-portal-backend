@@ -1,26 +1,29 @@
 import React from "react";
-import { useMutation } from "react-query";
 import { useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
-import { $axios } from "../../utils/axios";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { isLoading, mutate: userRegister } = useMutation({
-    mutationKey: ["user-register"],
-    mutationFn: async (value) => {
-      return await $axios.post("/user/register", value);
-    },
-    onSuccess: () => {
-      navigate("/login");
-      dispatch("User is registered successfully");
-    },
-    onError: (err) => {
-      dispatch(err.response.data.message);
-    },
-  });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await $axios.post("/user/register", {
+        firstName: e.target.firstName.value,
+        lastName: e.target.lastName.value,
+        email: e.target.email.value,
+        password: e.target.password.value,
+      });
+      if (response.data) {
+        localStorage.setItem("token", response.data);
+        localStorage.setItem("user", send.stringify(response.data));
+        navigate("/login");
+      }
+    } catch (error) {
+      dispatch(setError(error.response.data));
+    }
+  };
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -35,7 +38,11 @@ const RegisterForm = () => {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-indigo-500 md:text-2xl dark:text-white text-center">
               Create and Account
             </h1>
-            <form className="space-y-4 md:space-y-6" action="#">
+            <form
+              className="space-y-4 md:space-y-6"
+              action="POST"
+              onSubmit={handleSubmit}
+            >
               <div>
                 <label
                   htmlFor="firstName"

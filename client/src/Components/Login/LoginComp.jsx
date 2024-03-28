@@ -1,6 +1,28 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const LoginComp = () => {
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [error, setError] = React.useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await $axios.post("/user/login", {
+        email,
+        password,
+      });
+
+      if (response.data) {
+        localStorage.setItem("token", response.data);
+        localStorage.setItem("user", JSON.stringify(response.data));
+      }
+    } catch (error) {
+      setError(error.response.data);
+    }
+  };
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -15,7 +37,7 @@ const LoginComp = () => {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-indigo-500 md:text-2xl dark:text-white text-center">
               Sign in to your account
             </h1>
-            <form className="space-y-4 md:space-y-6" action="#">
+            <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label
                   htmlFor="email"
@@ -82,13 +104,12 @@ const LoginComp = () => {
                 Sign in
               </button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                Don’t have an account yet?{" "}
-                <a
-                  href="#"
-                  className="font-medium text-indigo-600 hover:underline dark:text-primary-500"
-                >
-                  Sign up
-                </a>
+                Don't have an account yet?
+                <NavLink to="/register">
+                  <a className="font-medium text-indigo-600 hover:underline dark:text-primary-500">
+                    Sign up
+                  </a>
+                </NavLink>
               </p>
             </form>
           </div>
