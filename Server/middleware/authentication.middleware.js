@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-import { User } from "../models/userModel.js";
+import User from "../models/userModel.js";
 
 // isUser middleware to check if user exists in the database and return a 401 error message if not
 export const isUser = async (req, res, next) => {

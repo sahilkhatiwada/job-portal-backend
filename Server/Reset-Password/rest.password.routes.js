@@ -1,6 +1,6 @@
 import express from "express";
 import bcrypt from "bcrypt";
-import { User } from "../models/userModel.js";
+import User from "../models/userModel.js";
 import generateResetToken from "../utils/resetPasswordToken.js";
 import sendResetEmail from "../utils/sendResetEmail.js";
 

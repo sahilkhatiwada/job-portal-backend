@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
-
+import $axios from "../../lib/axios.instance";
 const RegisterForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -10,18 +10,18 @@ const RegisterForm = () => {
     e.preventDefault();
     try {
       const response = await $axios.post("/user/register", {
-        firstName: e.target.firstName.value,
-        lastName: e.target.lastName.value,
-        email: e.target.email.value,
-        password: e.target.password.value,
+        firstName: e.target[0].value,
+        lastName: e.target[1].value,
+        email: e.target[2].value,
+        password: e.target[3].value,
       });
       if (response.data) {
         localStorage.setItem("token", response.data);
-        localStorage.setItem("user", send.stringify(response.data));
-        navigate("/login");
+        localStorage.setItem("user", JSON.stringify(response.data));
+        navigate("/");
       }
     } catch (error) {
-      dispatch(setError(error.response.data));
+      console.log(error);
     }
   };
   return (
@@ -38,24 +38,20 @@ const RegisterForm = () => {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-indigo-500 md:text-2xl dark:text-white text-center">
               Create and Account
             </h1>
-            <form
-              className="space-y-4 md:space-y-6"
-              action="POST"
-              onSubmit={handleSubmit}
-            >
+            <form className="space-y-4 md:space-y-6" action="#">
               <div>
                 <label
                   htmlFor="firstName"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Enter Your first Name
+                  Enter Your First Name
                 </label>
                 <input
                   type="firstName"
                   name="firstName"
                   id="firstName"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Enter Your FIrstName"
+                  placeholder="Enter Your FirstName"
                   required="true"
                 ></input>
               </div>
@@ -198,6 +194,7 @@ const RegisterForm = () => {
               </div>
               <button
                 type="submit"
+                onClick={handleSubmit}
                 className="w-full text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-indigo-500 dark:focus:ring-primary-800"
               >
                 Create an account

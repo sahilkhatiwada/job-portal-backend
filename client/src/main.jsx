@@ -2,16 +2,19 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import "./index.css";
-import { MainRoutes } from "./routes/MainRoutes";
-import { guestRoutes } from "./routes/guestRoutes";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { Provider } from "react-redux";
+import "./index.css";
+import { store } from "./store/store";
+import allRoutes from "./routes";
 
-const router = createBrowserRouter([...guestRoutes, ...MainRoutes]);
 // Create a client
 const queryClient = new QueryClient();
+const router = createBrowserRouter(allRoutes);
 ReactDOM.createRoot(document.getElementById("root")).render(
   <QueryClientProvider client={queryClient}>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </QueryClientProvider>
 );
