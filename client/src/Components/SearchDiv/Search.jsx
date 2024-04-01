@@ -5,18 +5,18 @@ const Search = () => {
   return (
     <div className="searchDiv grid gap-7 bg-greyIsh rounded-[10px] p-[3rem]">
       <form action="">
-        <div className="firstDiv flex justify-between items-center rounded-[8px] gap-[70px] bg-white p-5 shadow-lg shadow-greyIsh-700 ">
-          <div className="flex gap-2 items-center">
+        <div className="firstDiv flex justify-between items-center rounded gap-[70px] bg-white p-5 shadow-lg shadow-greyIsh-700 border border-solid border-blue-200 rounded-md">
+          <div className="flex gap-2 items-center border border-solid border-blue-200 rounded-md">
             <AiOutlineSearch className="text-[25px] icon" />
             <input
               type="text"
               className="bg-transparent text-blue-500 focus:outline-none w-[100%]"
               placeholder="Search Job Here"
             />
-            <AiOutlineCloseCircle className="text-[30px] text-[#a5a6a6] hover:text-textColor icon " />
+            <AiOutlineCloseCircle className="text-[30px] text-[#a5a6a6] hover:text-textColor icon" />
           </div>
 
-          <div className="flex gap-2 items-center">
+          <div className="flex gap-2 items-center border border-solid border-blue-200 rounded-md">
             <BsHouseDoor className="text-[25px] icon" />
             <input
               type="text"
@@ -26,7 +26,7 @@ const Search = () => {
             <AiOutlineCloseCircle className="text-[30px] text-[#a5a6a6] hover:text-textColor icon " />
           </div>
 
-          <div className="flex gap-2 items-center">
+          <div className="flex gap-2 items-center border border-solid border-blue-200 ">
             <CiLocationOn className="text-[25px] icon" />
             <input
               type="text"
@@ -60,7 +60,7 @@ const Search = () => {
         </div>
 
         <div className="singleSearch flex items-center gap-2">
-          <label htmlFor="tyoe" className="text-[#808080] font-semibold">
+          <label htmlFor="type" className="text-[#808080] font-semibold">
             Type:
           </label>
           <select
@@ -91,7 +91,9 @@ const Search = () => {
           </select>
         </div>
 
-        <span className="text-[#a1a1a1]  cursor-pointer">Clear All</span>
+        <span className="text-[#a1a1a1]  cursor-pointer text-indigo-400">
+          Clear All
+        </span>
       </div>
     </div>
   );
