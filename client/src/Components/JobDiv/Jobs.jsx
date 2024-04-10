@@ -156,7 +156,7 @@ const Jobs = () => {
                 {company}
               </span>
             </div>
-            <button className="border-[2px] rounded-[10px] block p-[10px] w-full text-[14px] font-semibold text-textColor hover:bg-white group-hover/item:text-textColor mt-[30px]">
+            <button className="border-[2px] rounded-[10px] block p-[10px] w-full text-[14px] font-semibold  hover:bg-white group-hover/item:text-textColor mt-[30px]">
               Apply Now
             </button>
           </div>
