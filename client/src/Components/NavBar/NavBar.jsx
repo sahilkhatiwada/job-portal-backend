@@ -9,7 +9,7 @@ const NavBar = () => {
   };
 
   return (
-    <div className="navBar flex justify-between items-center p-12">
+    <div className="navBar flex justify-between items-center p-12 ">
       <div className="logoDiv">
         <h1 className="logo text-4xl text-black cursor-pointer">
           <strong className="text-blue-600 cursor-pointer">Job</strong>Portal
